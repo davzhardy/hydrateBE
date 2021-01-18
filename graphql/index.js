@@ -1,5 +1,5 @@
-import { gql } from 'apollo-server' 
-import { resolvers as resolver } from './resolvers'
+const { gql } = require('apollo-server'); 
+const { resolvers }  = require('./resolvers'); // this might not work
 
 const typeDefs = gql`
   type Book {
@@ -24,11 +24,11 @@ const typeDefs = gql`
   }
 `
 
-const resolvers = 
+const resolver = 
 {
   Query: {
     books: () => books,
-    getUser: resolver.getUser
+    getUser: resolvers.getUser
   },
 }
 
@@ -44,7 +44,7 @@ const books = [
   },
 ];
 
-export {
+module.exports = {
   typeDefs,
-  resolvers
+  resolver
 }

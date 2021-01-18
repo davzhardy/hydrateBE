@@ -7,6 +7,6 @@ async function createUser (root, args, context) {
   return user
 }
 
-export {
+module.exports = {
   createUser
 }

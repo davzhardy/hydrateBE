@@ -1,27 +1,28 @@
 const { DataTypes } = require("sequelize");
 
-function mealsFactory (sequelize) {
-  return sequelize.define('Meals', {
+function userFactory (sequelize) {
+  return sequelize.define('User', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    description: {
+    username: {
       type: DataTypes.STRING,
       unique: true,
       allowNull: false,
     },
-    meal: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+    email: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    time: {
+    password: {
       type: DataTypes.STRING,
+      allowNull: false,
     }
   })
 } 
 
 module.exports = {
-  mealsFactory
+  userFactory
 }

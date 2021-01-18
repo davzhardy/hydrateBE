@@ -1,6 +1,6 @@
-import { DataTypes } from "sequelize";
+const { DataTypes } = require("sequelize");
 
-export function drinksFactory (sequelize) {
+function drinksFactory (sequelize) {
   return sequelize.define('Drinks', {
     id: {
       type: DataTypes.INTEGER,
@@ -9,7 +9,6 @@ export function drinksFactory (sequelize) {
     },
     drink: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
     cups: {
@@ -23,3 +22,7 @@ export function drinksFactory (sequelize) {
     }
   })
 } 
+
+module.exports = {
+  drinksFactory
+}
