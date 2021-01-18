@@ -19,7 +19,9 @@
   "homepage": "https://github.com/davzhardy/hydrateBE#readme",
   "dependencies": {
     "apollo-server": "^2.19.2",
+    "bcrypt": "^5.0.0",
     "graphql": "^15.4.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
     "sequelize": "^6.3.5"
   },

@@ -1,8 +1,8 @@
 const { ApolloServer } = require('apollo-server');
-const { typeDefs, resolver } = require('./graphql')
+const { typeDefs, resolvers } = require('./graphql')
 const { sequelize, db } = require('./postgresql')
 
-const server = new ApolloServer({typeDefs, resolver, context: db});
+const server = new ApolloServer({typeDefs, resolvers, context: db});
 
 const PORT = process.env.PORT || 4001;
 

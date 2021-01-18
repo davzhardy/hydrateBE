@@ -2,49 +2,31 @@ const { gql } = require('apollo-server');
 const { resolvers }  = require('./resolvers'); // this might not work
 
 const typeDefs = gql`
-  type Book {
-    title: String
-    author: String
-  }
   type User {
-    username: String
-    password: String
+    id: Int,
+    username: String,
+    password: String,
     email: String
   }
+  type UserCreation {
+    message: String!,
+    token: String,
+    status: Int!,
+    userData: User
+  }
   type Query {
-    books: [Book]
     getUser (username: String!): User
   }
   type Mutation {
     createUser (
-      username: String!
-      password: String!
+      username: String!,
+      password: String!,
       email: String!
-    ): User!
+    ): UserCreation!
   }
 `
 
-const resolver = 
-{
-  Query: {
-    books: () => books,
-    getUser: resolvers.getUser
-  },
-}
-
-
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-  {
-    title: 'City of ',
-    author: 'Paul Auster',
-  },
-];
-
 module.exports = {
   typeDefs,
-  resolver
+  resolvers
 }

@@ -1,7 +1,13 @@
 const queries = require('./query')
+const mutations = require('./mutation')
 
 const resolvers = {
-  getUser: queries.getUser
+  Query: {
+    getUser: queries.getUser,
+  },
+  Mutation: {
+    createUser: mutations.createUser
+  },
 }
 
 module.exports = {
