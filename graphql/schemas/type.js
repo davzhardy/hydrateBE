@@ -18,4 +18,10 @@ module.exports = `
     time: String!,
     UserId: Int!,
   }
+  type Meal {
+    description: String!,
+    meal: [String]!,
+    time: String!,
+    UserId: Int!,
+  }
 `

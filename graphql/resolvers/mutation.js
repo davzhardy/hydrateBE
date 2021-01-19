@@ -46,7 +46,18 @@ async function postDrink (root, args, context) {
   return newDrink
 }
 
+async function postMeal (root, args, context) {
+  const newMeal = await context.Meals.create({
+    description: args.description,
+    meal: args.meal,
+    time: args.time,
+    UserId: args.UserId
+  })
+  return newMeal
+}
+
 module.exports = {
   createUser,
-  postDrink
+  postDrink,
+  postMeal
 }
