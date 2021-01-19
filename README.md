@@ -6,6 +6,7 @@ ApolloServer
 
 To-dos
 
+Try and catch methodology for queries
 Update and delete drinks/meals
 
 Sent jwt token inside cookie

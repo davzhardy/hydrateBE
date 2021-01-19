@@ -6,7 +6,6 @@ module.exports = `
       email: String!
     ): UserCreation!
     postDrink (
-      username: String!,
       UserId: Int!,
       drink: String!,
       cups: Int,
@@ -14,7 +13,6 @@ module.exports = `
       time: String!,
     ): Drink!
     postMeal (
-      username: String!,
       UserId: Int!,
       description: String!
       meal: [String]!,
