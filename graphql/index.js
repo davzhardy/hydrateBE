@@ -1,5 +1,5 @@
 const { gql } = require('apollo-server'); 
-const { resolvers }  = require('./resolvers'); // this might not work
+const { resolvers }  = require('./resolvers'); 
 
 const typeDefs = gql`
   type User {
@@ -14,8 +14,16 @@ const typeDefs = gql`
     status: Int!,
     userData: User
   }
+  type Drink {
+    drink: String!,
+    cups: Int,
+    volume: Int,
+    time: String!,
+    UserId: Int!,
+  }
   type Query {
     getUser (username: String!): User
+    getAllDrinks (UserId: Int!): [Drink]!
   }
   type Mutation {
     createUser (
@@ -23,6 +31,14 @@ const typeDefs = gql`
       password: String!,
       email: String!
     ): UserCreation!
+    postDrink (
+      username: String!,
+      UserId: Int!,
+      drink: String!,
+      cups: Int,
+      volume: Int,
+      time: String!,
+    ): Drink!
   }
 `
 

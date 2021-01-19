@@ -7,6 +7,17 @@ async function getUser (root, args, context) {
   return user
 }
 
+async function getAllDrinks (root, args, context) {
+  const drinks = await context.Drinks.findAll({
+    where: {
+      UserId: args.UserId
+    }
+  })
+  return drinks
+}
+
+
 module.exports = {
-  getUser
+  getUser,
+  getAllDrinks
 }
