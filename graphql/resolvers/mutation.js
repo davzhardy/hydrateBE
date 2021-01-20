@@ -15,11 +15,12 @@ async function createUser (root, args, context) {
     }
   })
   if (user) {
-    response.message = 'Email already used';
+    response.message = 'Username already used';
     response.status = 404;
     return response;
   } else {
     const hash = await bcrypt.hash(args.password, 10);
+    console.log(hash)
     const newUser = await context.User.create({
       username: args.username,
       password: hash,

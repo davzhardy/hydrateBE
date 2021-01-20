@@ -7,6 +7,7 @@ ApolloServer
 To-dos
 
 Try and catch methodology for queries
+Create user needs to check for email aswell
 Update and delete drinks/meals
 
 Sent jwt token inside cookie

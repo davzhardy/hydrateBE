@@ -1,10 +1,14 @@
+const bcrypt = require('bcrypt');
+
 async function getUser (root, args, context) {
   const user = await context.User.findOne({
     where: {
       email: args.email
     }
   })
-  if (user.dataValues.password === args.password) return user
+  const validatePassword = await bcrypt.compare(args.password, user.dataValues.password)
+  console.log(validatePassword)
+  if (validatePassword) return user
   else return null
 }
 
