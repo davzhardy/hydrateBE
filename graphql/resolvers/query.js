@@ -1,7 +1,7 @@
 async function getUser (root, args, context) {
   const user = await context.User.findOne({
     where: {
-      username: args.username
+      email: args.email
     }
   })
   if (user.dataValues.password === args.password) return user
