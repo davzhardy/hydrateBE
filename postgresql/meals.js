@@ -9,7 +9,6 @@ function mealsFactory (sequelize) {
     },
     description: {
       type: DataTypes.STRING,
-      unique: true,
       allowNull: false,
     },
     meal: {

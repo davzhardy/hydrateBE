@@ -4,7 +4,8 @@ async function getUser (root, args, context) {
       username: args.username
     }
   })
-  return user
+  if (user.dataValues.password === args.password) return user
+  else return null
 }
 
 async function getAllDrinks (root, args, context) {
