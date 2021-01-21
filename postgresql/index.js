@@ -5,16 +5,17 @@ const { userFactory } = require ('./user')
 
 const db = {}
 
-const database = process.env.HEROKU_DATABASE || 'hydrateapp';
-const username = process.env.HEROKU_USER || 'davidhardy';
-const password = process.env.HEROKU_PASSWORD || 'admin';
-const host = process.env.HEROKU_HOST || 'localhost';
-
-console.log(username)
+const database = process.env.DEV_DATABASE;
+const username = process.env.DEV_USER;
+const password = process.env.DEV_PASSWORD;
+const host = process.env.DEV_HOST || 'localhost';
 
 const sequelize = new Sequelize (database, username, password, {
   host: host,
-  dialect: 'postgres'
+  dialect: 'postgres',
+  // dialectOptions: {
+  //   ssl: false
+  // }
 })
 
 db.Meals = mealsFactory(sequelize)

@@ -1,0 +1,254 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: Drinks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."Drinks" (
+    id integer NOT NULL,
+    drink character varying(255) NOT NULL,
+    cups integer,
+    volume integer,
+    "time" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "UserId" integer
+);
+
+
+--
+-- Name: Drinks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."Drinks_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: Drinks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."Drinks_id_seq" OWNED BY public."Drinks".id;
+
+
+--
+-- Name: Meals; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."Meals" (
+    id integer NOT NULL,
+    description character varying(255) NOT NULL,
+    meal character varying(255)[] NOT NULL,
+    "time" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "UserId" integer
+);
+
+
+--
+-- Name: Meals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."Meals_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: Meals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."Meals_id_seq" OWNED BY public."Meals".id;
+
+
+--
+-- Name: Users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."Users" (
+    id integer NOT NULL,
+    username character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+--
+-- Name: Users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public."Users_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: Users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public."Users_id_seq" OWNED BY public."Users".id;
+
+
+--
+-- Name: Drinks id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Drinks" ALTER COLUMN id SET DEFAULT nextval('public."Drinks_id_seq"'::regclass);
+
+
+--
+-- Name: Meals id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Meals" ALTER COLUMN id SET DEFAULT nextval('public."Meals_id_seq"'::regclass);
+
+
+--
+-- Name: Users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Users" ALTER COLUMN id SET DEFAULT nextval('public."Users_id_seq"'::regclass);
+
+
+--
+-- Data for Name: Drinks; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."Drinks" (id, drink, cups, volume, "time", "createdAt", "updatedAt", "UserId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Meals; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."Meals" (id, description, meal, "time", "createdAt", "updatedAt", "UserId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."Users" (id, username, email, password, "createdAt", "updatedAt") FROM stdin;
+1	david	x@x	$2b$10$kocBH2IYBYlYmFQjXJ1Tu.b8GwKyWSgUYAhEjhaTEPKDVGlPgOuOe	2021-01-21 13:41:29.012+01	2021-01-21 13:41:29.012+01
+\.
+
+
+--
+-- Name: Drinks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."Drinks_id_seq"', 1, false);
+
+
+--
+-- Name: Meals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."Meals_id_seq"', 1, false);
+
+
+--
+-- Name: Users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public."Users_id_seq"', 1, true);
+
+
+--
+-- Name: Drinks Drinks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Drinks"
+    ADD CONSTRAINT "Drinks_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Meals Meals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Meals"
+    ADD CONSTRAINT "Meals_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Users Users_email_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Users"
+    ADD CONSTRAINT "Users_email_key" UNIQUE (email);
+
+
+--
+-- Name: Users Users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Users"
+    ADD CONSTRAINT "Users_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Users Users_username_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Users"
+    ADD CONSTRAINT "Users_username_key" UNIQUE (username);
+
+
+--
+-- Name: Drinks Drinks_UserId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Drinks"
+    ADD CONSTRAINT "Drinks_UserId_fkey" FOREIGN KEY ("UserId") REFERENCES public."Users"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- Name: Meals Meals_UserId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."Meals"
+    ADD CONSTRAINT "Meals_UserId_fkey" FOREIGN KEY ("UserId") REFERENCES public."Users"(id) ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
