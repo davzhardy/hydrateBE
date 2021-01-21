@@ -5,10 +5,10 @@ const { userFactory } = require ('./user')
 
 const db = {}
 
-const database = process.env.DEV_DATABASE;
-const username = process.env.DEV_USER;
-const password = process.env.DEV_PASSWORD;
-const host = process.env.DEV_HOST || 'localhost';
+const database = process.env.DATASBASE_URL;
+const username = process.env.USER;
+const password = process.env.PASSWORD;
+const host = process.env.HOST || 'localhost';
 
 const sequelize = new Sequelize (database, username, password, {
   host: host,
