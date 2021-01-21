@@ -1,15 +1,31 @@
 const bcrypt = require('bcrypt');
 
 async function getUser (root, args, context) {
+  const response = {
+    emailExists: null,
+    passwordMatches: null,
+    userData: {}
+  }
   const user = await context.User.findOne({
     where: {
       email: args.email
     }
   })
-  const validatePassword = await bcrypt.compare(args.password, user.dataValues.password)
-  console.log(validatePassword)
-  if (validatePassword) return user
-  else return null
+  if (user) {
+    response.emailExists = true;
+    const validatePassword = await bcrypt.compare(args.password, user.dataValues.password)
+      if (validatePassword) {
+        response.passwordMatches = true;
+        response.userData = user
+        return response
+      } else {
+        response.passwordMatches = false;
+        return response
+      }
+  } else {
+    response.emailExists = false;
+    return response
+  }
 }
 
 async function getAllDrinks (root, args, context) {

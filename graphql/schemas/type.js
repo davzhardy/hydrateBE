@@ -11,6 +11,11 @@ module.exports = `
     status: Int!,
     userData: User
   }
+  type UserResponse {
+    emailExists: Boolean,
+    passwordMatches: Boolean,
+    userData: User
+  }
   type Drink {
     drink: String!,
     cups: Int,
