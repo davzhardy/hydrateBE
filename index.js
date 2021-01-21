@@ -4,7 +4,7 @@ const { sequelize, db } = require('./postgresql')
 
 const server = new ApolloServer({typeDefs, resolvers, context: db});
 
-const PORT = process.env.PORT || 4001;
+const PORT = process.env.HEROKU_PORT || 4000;
 
 (async function () {
   try {

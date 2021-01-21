@@ -5,8 +5,13 @@ const { userFactory } = require ('./user')
 
 const db = {}
 
-const sequelize = new Sequelize ('hydrateapp','davidhardy','admin', {
-  host:'localhost',
+const database = process.env.HEROKU_DATABASE || 'hydrateapp';
+const username = process.env.HEROKU_USER || 'davidhardy';
+const password = process.env.HEROKU_PASSWORD || 'admin';
+const host = process.env.HEROKU_HOST || 'localhost';
+
+const sequelize = new Sequelize (database, username, password, {
+  host: host,
   dialect: 'postgres'
 })
 
