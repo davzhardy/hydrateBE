@@ -10,7 +10,7 @@ const PORT = process.env.HEROKU_PORT || 4000;
   try {
     await db.sequelize.authenticate();
     console.log('authentication successful');
-    // await db.sequelize.sync();  // {force:true}
+    await db.sequelize.sync({force:true});  // {force:true}
     server.listen(
       { port: PORT },
       () => console.log(`Server ready at port ${PORT}`)
