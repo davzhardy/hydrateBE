@@ -10,6 +10,8 @@ const username = process.env.USER;
 const password = process.env.PASSWORD;
 const host = process.env.HOST || 'localhost';
 
+if (process.env.NODE_ENV === 'production') const sequelize = new Sequelize (process.env.DATABASE_URL)
+
 // const sequelize = new Sequelize (database, username, password, {
 //   host: host,
 //   dialect: 'postgres',
@@ -17,8 +19,6 @@ const host = process.env.HOST || 'localhost';
 //   //   ssl: false
 //   // }
 // })
-
-const sequelize = new Sequelize (process.env.DATABASE_URL)
 
 db.Meals = mealsFactory(sequelize)
 db.Drinks = drinksFactory(sequelize)
