@@ -5,7 +5,7 @@ const { userFactory } = require ('./user')
 
 const db = {}
 
-const database = process.env.DATASBASE_URL;
+const database = process.env.DATASBASE;
 const username = process.env.USER;
 const password = process.env.PASSWORD;
 const host = process.env.HOST || 'localhost';
