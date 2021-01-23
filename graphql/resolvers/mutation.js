@@ -5,22 +5,24 @@ const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'unsecure';
 async function createUser (root, args, context) {
   const response = {
     status: '',
-    message: '',
+    userSuccessfullyCreated: false,
+    error: {
+      emailTaken: false,
+    },
     token: '',
     userData: {}
   } 
   const user = await context.User.findOne({
     where: {
-      username: args.username
+      email: args.email
     }
   })
   if (user) {
-    response.message = 'Username already used';
+    response.error.emailTaken = true;
     response.status = 404;
     return response;
   } else {
     const hash = await bcrypt.hash(args.password, 10);
-    console.log(hash)
     const newUser = await context.User.create({
       username: args.username,
       password: hash,
@@ -28,7 +30,7 @@ async function createUser (root, args, context) {
     })
     const accessToken = jwt.sign(newUser.id, ACCESS_TOKEN_SECRET);
     response.status= 200;
-    response.message = 'User successfully generated';
+    response.userSuccessfullyCreated = true;
     response.userData = newUser;
     delete response.userData.password;
     response.token = accessToken;

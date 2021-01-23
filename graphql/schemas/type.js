@@ -6,7 +6,8 @@ module.exports = `
     email: String
   }
   type UserCreation {
-    message: String!,
+    userSuccessfullyCreated: Boolean!,
+    error: CreateUserError,
     token: String,
     status: Int!,
     userData: User
@@ -28,5 +29,8 @@ module.exports = `
     meal: [String]!,
     time: String!,
     UserId: Int!,
+  }
+  type CreateUserError {
+    emailTaken: Boolean!
   }
 `
