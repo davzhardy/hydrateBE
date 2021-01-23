@@ -32,5 +32,6 @@ module.exports = `
   }
   type CreateUserError {
     emailTaken: Boolean!
+    usernameTaken: Boolean!
   }
 `

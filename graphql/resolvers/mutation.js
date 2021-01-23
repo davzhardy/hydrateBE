@@ -8,17 +8,27 @@ async function createUser (root, args, context) {
     userSuccessfullyCreated: false,
     error: {
       emailTaken: false,
+      usernameTaken: false,
     },
     token: '',
     userData: {}
   } 
-  const user = await context.User.findOne({
+  const userEmail = await context.User.findOne({
     where: {
       email: args.email
     }
   })
-  if (user) {
+  const userUsername = await context.User.findOne({
+    where: {
+      username: args.username
+    }
+  })
+  if (userEmail) {
     response.error.emailTaken = true;
+    response.status = 404;
+    return response;
+  } else if (userUsername) {
+    response.error.usernameTaken = true;
     response.status = 404;
     return response;
   } else {
