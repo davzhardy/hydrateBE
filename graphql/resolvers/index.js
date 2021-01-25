@@ -11,6 +11,8 @@ const resolvers = {
     createUser: mutations.createUser,
     postDrink: mutations.postDrink,
     postMeal: mutations.postMeal,
+    modifyMeal: mutations.modifyMeal,
+    deleteMeal: mutations.deleteMeal,
   },
 }
 

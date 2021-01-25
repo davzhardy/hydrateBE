@@ -34,4 +34,11 @@ module.exports = `
     emailTaken: Boolean!
     usernameTaken: Boolean!
   }
+  type ModifyMealResponse {
+    mealUpdated: Boolean
+    meal: Meal
+  }
+  type DeleteMealResponse {
+    mealDeleted: Boolean
+  }
 `

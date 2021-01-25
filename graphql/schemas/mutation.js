@@ -18,5 +18,15 @@ module.exports = `
       meal: [String]!,
       time: String!,
     ): Meal!
+    modifyMeal (
+      UserId: Int!,
+      meal: [String]!,
+      time: String!,
+    ): ModifyMealResponse!
+    deleteMeal (
+      UserId: Int!,
+      meal: [String]!,
+      time: String!,
+    ): DeleteMealResponse!
   }
 `

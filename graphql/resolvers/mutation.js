@@ -66,11 +66,56 @@ async function postMeal (root, args, context) {
     time: args.time,
     UserId: args.UserId
   })
+  console.log(typeof newMeal)
   return newMeal
+}
+
+async function modifyMeal (root, args, context) {
+  const response = {
+    mealUpdated: false,
+    meal: {},
+  }
+  const updateMeal = await context.Meals.update(
+    {
+      meal: args.meal
+    },
+    {
+      where: {
+        UserId: args.UserId,
+        time: args.time,
+      },
+      returning: true
+    }
+  )
+  if (updateMeal[0] === 1) {
+    response.mealUpdated = true
+    response.meal = updateMeal[1][0]
+    return response
+  } else {
+    return response
+  }
+}
+
+async function deleteMeal (root, args, context) {
+  const response = {
+    mealDeleted: false
+  }
+  const deleteMeal = await context.Meals.destroy({
+    where: {
+      UserId: args.UserId,
+      meal: args.meal,
+      time: args.time,
+    }
+  })
+  
+  if (deleteMeal === 1) response.mealDeleted = true
+  return response
 }
 
 module.exports = {
   createUser,
   postDrink,
-  postMeal
+  postMeal,
+  modifyMeal,
+  deleteMeal,
 }
