@@ -97,9 +97,11 @@ async function modifyMeal (root, args, context) {
 }
 
 async function deleteMeal (root, args, context) {
+  console.log('deletemeal called')
   const response = {
     mealDeleted: false
   }
+  console.log(args.meal)
   const deleteMeal = await context.Meals.destroy({
     where: {
       UserId: args.UserId,
