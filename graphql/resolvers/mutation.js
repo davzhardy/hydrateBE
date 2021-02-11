@@ -66,7 +66,6 @@ async function postMeal (root, args, context) {
     time: args.time,
     UserId: args.UserId
   })
-  console.log(typeof newMeal)
   return newMeal
 }
 
@@ -100,7 +99,6 @@ async function deleteMeal (root, args, context) {
   const response = {
     mealDeleted: false
   }
-  console.log(args.meal)
   const deleteMeal = await context.Meals.destroy({
     where: {
       UserId: args.UserId,
