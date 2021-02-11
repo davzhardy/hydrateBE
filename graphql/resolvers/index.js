@@ -13,6 +13,8 @@ const resolvers = {
     postMeal: mutations.postMeal,
     modifyMeal: mutations.modifyMeal,
     deleteMeal: mutations.deleteMeal,
+    modifyDrink: mutations.modifyDrink,
+    deleteDrink: mutations.deleteDrink,
   },
 }
 

@@ -97,7 +97,6 @@ async function modifyMeal (root, args, context) {
 }
 
 async function deleteMeal (root, args, context) {
-  console.log('deletemeal called')
   const response = {
     mealDeleted: false
   }
@@ -114,10 +113,56 @@ async function deleteMeal (root, args, context) {
   return response
 }
 
+async function modifyDrink (root, args, context) {
+  const response = {
+    drinkUpdated: false,
+    drink: {},
+  }
+  const updateDrink = await context.Drinks.update(
+    {
+      drink: args.drink,
+      cups: args.cups,
+      volume: args.volume,
+    },
+    {
+      where: {
+        UserId: args.UserId,
+        time: args.time,
+      },
+      returning: true
+    }
+  )
+  if (updateDrink[0] === 1) {
+    response.drinkUpdated = true
+    response.drink = updateDrink[1][0]
+    return response
+  } else {
+    return response
+  }
+}
+
+async function deleteDrink (root, args, context) {
+  const response = {
+    drinkDeleted: false
+  }
+  const deleteMeal = await context.Drinks.destroy({
+    where: {
+      UserId: args.UserId,
+      drink: args.drink,
+      time: args.time,
+    }
+  })
+  
+  if (deleteMeal === 1) response.mealDeleted = true
+  return response
+}
+
 module.exports = {
   createUser,
   postDrink,
   postMeal,
   modifyMeal,
   deleteMeal,
+  modifyDrink,
+  deleteDrink,
 }

@@ -12,6 +12,18 @@ module.exports = `
       volume: Int,
       time: String!,
     ): Drink!
+    modifyDrink (
+      UserId: Int!,
+      drink: String!,
+      cups: Int,
+      volume: Int,
+      time: String!,
+    ): ModifyDrinkResponse!
+    deleteDrink (
+      UserId: Int!,
+      drink: String!,
+      time: String!,
+    ): DeleteDrinkResponse!
     postMeal (
       UserId: Int!,
       description: String!

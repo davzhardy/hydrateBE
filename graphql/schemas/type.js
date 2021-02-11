@@ -41,4 +41,11 @@ module.exports = `
   type DeleteMealResponse {
     mealDeleted: Boolean
   }
+  type ModifyDrinkResponse {
+    drinkUpdated: Boolean
+    drink: Drink
+  }
+  type DeleteDrinkResponse {
+    drinkDeleted: Boolean
+  }
 `
