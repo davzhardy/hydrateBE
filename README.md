@@ -1,24 +1,20 @@
-GraphQL
-Postgres
-SQL
-Node.js
-ApolloServer
+# Backend of a drink and meal tracking website
 
-To-dos
+Backend in production, hosted on heroku.
 
-Try and catch methodology for queries
-Create user needs to check for email aswell
-Update and delete drinks/meals
+Frontend in production on Netlify here: hydrate-app-dh.netlify.app/
 
-Sent jwt token inside cookie
-https://livecodestream.dev/post/a-practical-guide-to-jwt-authentication-with-nodejs/
+# Overview
 
+A website designed to track a users drinking and eating habits.
 
-## Dumping DB from local to Heroku
-Run this: 
+Inspired by the health difficulties of someone close to my heart and their need to track the amount they drink and eat.
 
-PGPASSWORD=<mypassword> pg_dump -Fc --no-acl --no-owner -h localhost -U davidhardy <dbtodump> <dbtodump>.dump
+You can find the frontend code here: https://github.com/davzhardy/hydrateFE
 
-Then this:
+# Tech Stack
 
-heroku pg:psql DATABASE_URL --app <herokuappname> < <dbtodump>.dump
+- Node.js
+- GraphQL
+- PostgresSQL
+- ApolloServer
